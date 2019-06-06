@@ -2,6 +2,7 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
   annotations:
+    catalog-image/hash: b4a1e06
     categories: A list of comma separated categories that your operator falls under.
     certified: 'false'
     containerImage: quay.io/dgoodwin/hive:latest
