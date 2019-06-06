@@ -2,13 +2,14 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
   annotations:
+    catalog-image/hash: aa3ffdabf737744f9746490a503ffb2baf473b05
     categories: A list of comma separated categories that your operator falls under.
-    certified: 'false'
+    certified: "false"
     containerImage: quay.io/dgoodwin/hive:latest
-    createdAt: '2019-04-11T17:51:15Z'
+    createdAt: "2019-04-01T18:43:52Z"
     description: OpenShift cluster provisioning and management at scale.
     support: Devan Goodwin
-  name: hive-operator.v0.1.631-b1f9160
+  name: hive-operator.v0.1.700-0000000
   namespace: placeholder
 spec:
   customresourcedefinitions:
@@ -35,7 +36,7 @@ spec:
       clusterPermissions:
       - rules:
         - apiGroups:
-          - ''
+          - ""
           resources:
           - serviceaccounts
           - serviceaccounts/finalizers
@@ -44,7 +45,6 @@ spec:
           - services
           - services/finalizers
           - events
-          - configmaps
           verbs:
           - get
           - list
@@ -54,9 +54,10 @@ spec:
           - patch
           - delete
         - apiGroups:
-          - ''
+          - ""
           resources:
           - namespaces
+          - configmaps
           verbs:
           - get
           - list
@@ -156,7 +157,7 @@ spec:
           - patch
           - delete
         - apiGroups:
-          - ''
+          - ""
           resources:
           - serviceaccounts
           - secrets
@@ -220,9 +221,6 @@ spec:
           - hive.openshift.io
           resources:
           - dnszones
-          - dnszones/status
-          - dnszones/finalizers
-          - dnsendpoints
           verbs:
           - get
           - list
@@ -348,7 +346,7 @@ spec:
           - list
           - watch
         - apiGroups:
-          - ''
+          - ""
           resources:
           - configmaps
           verbs:
@@ -363,7 +361,7 @@ spec:
           - list
           - watch
         - apiGroups:
-          - ''
+          - ""
           resources:
           - namespaces
           verbs:
@@ -379,29 +377,6 @@ spec:
         serviceAccountName: hiveadmission
       - rules:
         - apiGroups:
-          - ''
-          resources:
-          - services
-          verbs:
-          - get
-          - watch
-          - list
-        - apiGroups:
-          - hive.openshift.io
-          resources:
-          - dnsendpoints
-          - dnsendpoints/status
-          verbs:
-          - get
-          - list
-          - watch
-          - create
-          - update
-          - patch
-          - delete
-        serviceAccountName: external-dns
-      - rules:
-        - apiGroups:
           - batch
           resources:
           - jobs
@@ -410,7 +385,7 @@ spec:
           - list
           - watch
         - apiGroups:
-          - ''
+          - ""
           resources:
           - pods
           - pods/log
@@ -419,7 +394,7 @@ spec:
           - list
           - watch
         - apiGroups:
-          - ''
+          - ""
           resources:
           - secrets
           - configmaps
@@ -453,7 +428,6 @@ spec:
           - hive.openshift.io
           resources:
           - clusterimagesets
-          - hiveconfigs
           verbs:
           - get
           - list
@@ -467,12 +441,12 @@ spec:
           selector:
             matchLabels:
               control-plane: hive-operator
-              controller-tools.k8s.io: '1.0'
+              controller-tools.k8s.io: "1.0"
           template:
             metadata:
               labels:
                 control-plane: hive-operator
-                controller-tools.k8s.io: '1.0'
+                controller-tools.k8s.io: "1.0"
             spec:
               containers:
               - command:
@@ -482,7 +456,7 @@ spec:
                 env:
                 - name: CLI_CACHE_DIR
                   value: /var/cache/kubectl
-                image: quay.io/app-sre/hive:b1f9160
+                image: quay.io/app-sre/hive:1af4d6f
                 imagePullPolicy: Always
                 name: hive-operator
                 resources:
@@ -518,5 +492,5 @@ spec:
   maturity: alpha
   provider:
     name: Red Hat, Inc
-  replaces: hive-operator.v0.1.627-83dce70
-  version: 0.1.631-b1f9160
+  replaces: hive-operator.v0.1.600-b4a1e06
+  version: 0.1.700-0000000
